@@ -1,14 +1,9 @@
 package stack
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 )
-
-func main() {
-	fmt.Println("Hello World")
-}
 
 func TestStackArray(t *testing.T) {
 	t.Run("Stack With Array", func(t *testing.T) {
