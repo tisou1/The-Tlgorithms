@@ -1,9 +1,14 @@
 package stack
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
+
+func Hello() {
+	fmt.Println("Hello, World!")
+}
 
 func TestStackArray(t *testing.T) {
 	t.Run("Stack With Array", func(t *testing.T) {
@@ -12,7 +17,7 @@ func TestStackArray(t *testing.T) {
 		stackPush(3)
 
 		t.Run("Stack Push", func(t *testing.T) {
-			if !reflect.DeepEqual([]any{2, 3}, stackArray) {
+			if !reflect.DeepEqual([]any{3, 2}, stackArray) {
 				t.Errorf("栈的push操作出错,期望 %v 实际 %v", []any{3, 2}, stackArray)
 			}
 		})
@@ -41,7 +46,7 @@ func TestStackArray(t *testing.T) {
 		})
 
 		t.Run("Stack Empty", func(t *testing.T) {
-			if stackEmpty() == true {
+			if stackEmpty() {
 				t.Errorf("栈的empty操作出错,期望 %v 实际 %v", false, stackEmpty())
 			}
 
@@ -49,7 +54,7 @@ func TestStackArray(t *testing.T) {
 			stackPop()
 			stackPop()
 
-			if stackEmpty() == false {
+			if !stackEmpty() {
 				t.Errorf("栈的empty操作出错,期望 %v 实际 %v", true, stackEmpty())
 			}
 		})
