@@ -59,12 +59,10 @@ describe('queue', () => {
   it('dequeue', () => {
    const pop = queue.dequeue()
    expect(queue.length).toBe(0)
-   expect(pop).toMatchInlineSnapshot(`
-     {
-       "id": "1",
-       "name": "siry",
-     }
-   `)
+   expect(pop).toEqual(  {
+    "id": "1",
+    "name": "siry",
+    })
   })
 })
 /**
