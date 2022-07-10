@@ -2,7 +2,7 @@
 
 
 
-class Stack<T> {
+export default class Stack<T> {
   stack: T[]
   top: number
   constructor() {
@@ -31,10 +31,10 @@ class Stack<T> {
     return this.top === 0
   }
 
-  get last() {
+  get peak() {
     if(this.top !== 0)
-    return this.stack[this.stack.length - 1]
-  return null
+      return this.stack[this.stack.length - 1]
+    return null
   }
 
   
