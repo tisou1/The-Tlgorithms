@@ -219,7 +219,7 @@ class LinkedList<T>{
 
 
   //可迭代对象,可用for of ...直接遍历
-  iterator() {
+  itertor() {
     let { currentNode } = this.initiateNodeAndIndex()
     if( currentNode === null) return -1
 
