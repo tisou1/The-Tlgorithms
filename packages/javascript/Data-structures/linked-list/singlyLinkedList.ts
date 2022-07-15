@@ -1,6 +1,6 @@
 
 
-interface NodeT<T> {
+export interface NodeT<T> {
   data: T
   next: NodeT<T> | null
 }
