@@ -18,7 +18,7 @@ class SinglyCircularLinkedList<T = unknown> {
   initiateNodeAndIndex() {
     return {
       currentNode: this.headNode,
-      currentIndex: this.length
+      currentIndex: 0
     }
   }
 
@@ -159,7 +159,7 @@ class SinglyCircularLinkedList<T = unknown> {
   get() {
     let { currentIndex, currentNode } = this.initiateNodeAndIndex()
     const list: T[] = []
-    while(currentIndex < this.length && !currentNode) {
+    while(currentIndex < this.length && currentNode) {
       list.push(currentNode!.data)
       currentNode = currentNode!.next
       currentIndex++
