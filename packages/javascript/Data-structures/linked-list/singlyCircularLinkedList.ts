@@ -1,5 +1,6 @@
 import { Node } from './singlyLinkedList'
-import type { NodeT } from './singlyLinkedList'
+import type { NodeT } from './types'
+
 
 class SinglyCircularLinkedList<T = unknown> {
   headNode: NodeT<T> | null 

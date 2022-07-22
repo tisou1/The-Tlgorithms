@@ -65,9 +65,27 @@ describe('LinkedList', () => {
     ls.addFirst(randomGeneratePerson())
     ls.addFirst(randomGeneratePerson())
 
-    for(const element of ls.itertor()){
-      console.log(element)
-    }
-
+    // for(const element of ls.itertor()){
+    //   console.log(element)
+    // }
+    expect(ls.get()).toMatchInlineSnapshot(`
+      [
+        {
+          "age": 47,
+          "id": 3,
+          "name": "react",
+        },
+        {
+          "age": 64,
+          "id": 2,
+          "name": "angular",
+        },
+        {
+          "age": 54,
+          "id": 1,
+          "name": "react",
+        },
+      ]
+    `)
   })
 })

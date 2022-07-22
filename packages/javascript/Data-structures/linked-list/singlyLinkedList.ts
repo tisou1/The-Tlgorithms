@@ -1,9 +1,6 @@
+import type { NodeT } from './types'
 
 
-export interface NodeT<T> {
-  data: T
-  next: NodeT<T> | null
-}
 class Node<T> {
   data: T
   next: NodeT<T> | null

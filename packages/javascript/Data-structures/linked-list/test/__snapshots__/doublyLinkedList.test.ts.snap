@@ -1,0 +1,17 @@
+// Vitest Snapshot v1
+
+exports[`check DoublyLinkedList > check getElementAt 1`] = `
+Node {
+  "data": 22,
+  "next": Node {
+    "data": 33,
+    "next": null,
+    "prev": [Circular],
+  },
+  "prev": Node {
+    "data": 11,
+    "next": [Circular],
+    "prev": null,
+  },
+}
+`;
