@@ -21,6 +21,7 @@ class DoublyLinkedList<T> {
   }
 
   size =  () => this.length
+  //亦可以使用 getter方法
   // get size(): number {
   //   return this.length
   // }
