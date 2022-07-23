@@ -20,7 +20,18 @@ class DoublyLinkedList<T> {
     this.tail = null
   }
 
-  size = () => this.length
+  size =  () => this.length
+  // get size(): number {
+  //   return this.length
+  // }
+
+  isEmpty = () => this.length === 0
+
+  getHead = () => this.head
+
+  getTail = () => this.tail
+
+
   
   //尾部添加元素
   append(data: T) {
@@ -124,6 +135,39 @@ class DoublyLinkedList<T> {
     return -1
   }
 
+  //是否在链表中
+  isPresent(data: T) {
+    return this.indexOf(data) !== -1
+  }
+
+  //删除元素
+  delete(data: T) {
+    return this.removeAt(this.indexOf(data))
+  }
+
+  //删除第一个
+  deleteHead() {
+    this.removeAt(0)
+  }
+
+  //删除最后一个
+  deleTail() {
+    this.removeAt(this.length - 1)
+  }
+
+  //打印
+  toString() {
+    let current = this.head
+    let str = ''
+
+    while(current) {
+      str += current.data + (current.next ? '\n' : '')
+      current = current.next
+    }
+
+    return str
+  }
+
   // Convert list to array
   toArray () {
     const arr: T[] = []
@@ -136,6 +180,31 @@ class DoublyLinkedList<T> {
 
     return arr
   }
+
+
+    // Method to iterate over the LinkedList
+    iterator () {
+      let currentNode = this.getHead()
+      if (currentNode === null) return -1
+  
+      const iterate = function * () {
+        while (currentNode) {
+          yield currentNode.data
+          currentNode = currentNode.next
+        }
+      }
+      return iterate()
+    }
+  
+    // Method to log the LinkedList, for debugging
+    // it' a circular structure, so can't use stringify to debug the whole structure
+    log () {
+      let currentNode = this.getHead()
+      while (currentNode) {
+        console.log(currentNode.data)
+        currentNode = currentNode.next
+      }
+    }
 }
 
 export { DoublyLinkedList }

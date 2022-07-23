@@ -49,4 +49,15 @@ describe('check DoublyLinkedList', () => {
 
   })
 
+  it('check indexof', () => {
+    expect(list.append(100)).toEqual(1)
+    expect(list.append(200)).toEqual(2)
+    expect(list.append(300)).toEqual(3)
+    expect(list.append(400)).toEqual(4)
+    expect(list.append(500)).toEqual(5)
+
+    expect(list.indexOf(400)).toBe(3)
+  })
+
+
 })
