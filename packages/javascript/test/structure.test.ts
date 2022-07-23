@@ -27,8 +27,6 @@ describe('Stack', () => {
 
   it('stack peak', () => { 
     stack.push(333)
-    console.log(stack)
-
     expect(stack.peak).toBe(333)
   })
 })

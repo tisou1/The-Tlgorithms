@@ -22,7 +22,7 @@ class DoublyLinkedList<T> {
 
   size = () => this.length
   
-  //添加元素
+  //尾部添加元素
   append(data: T) {
     const node = new Node(data)
 
@@ -55,7 +55,7 @@ class DoublyLinkedList<T> {
       return null
     }
   }
-
+  //指定位置插入节点,
   insert(index: number, data: T) {
     const node = new Node(data)
     //获取目标元素前一个
@@ -69,7 +69,59 @@ class DoublyLinkedList<T> {
     node.prev = previousNode
 
     return ++this.length
+  }
 
+
+  removeAt(index: number) {
+
+    //针对indexwei 0 和 this.length的情况可以做出优化
+    if(index >= 0 && index < this.length) {
+      let current = this.head
+      //开始位置
+      if(index === 0) {
+        this.head = current!.next
+        //如果只有一个节点
+        if(this.length === 1) {
+          this.tail = null
+        } else {
+          this.head!.prev = null
+        }
+      
+      } else if(index === this.length - 1){
+        current = this.tail
+        this.tail = current!.prev
+        this.tail!.next = null
+      } else {
+        //获取目标元素
+        const currentNode = this.getElementAt(index)
+
+        let previousNode = currentNode?.prev
+
+        previousNode!.next = currentNode!.next
+        currentNode!.next!.prev = previousNode  as DoubleNode<T>
+
+        current =  currentNode
+      }
+
+      this.length--
+      return current?.data
+    }
+  }
+
+
+  indexOf(data: T) {
+    let current = this.head
+    let index = -1
+
+    while(current) {
+      if(data === current.data)
+        return ++index
+
+      index++
+      current = current.next
+    }
+
+    return -1
   }
 
   // Convert list to array

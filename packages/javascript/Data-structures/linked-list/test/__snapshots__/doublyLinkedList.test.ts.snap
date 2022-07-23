@@ -15,3 +15,13 @@ Node {
   },
 }
 `;
+
+exports[`check DoublyLinkedList > check insert 1`] = `
+[
+  10,
+  333,
+  20,
+  444,
+  30,
+]
+`;
