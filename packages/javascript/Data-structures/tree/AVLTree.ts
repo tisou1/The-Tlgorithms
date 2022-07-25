@@ -22,13 +22,14 @@ let utils;
       return 0
     }
   }
+  _utils.comparator = comparator
 })(utils || (utils = {}))
 
 /**
  * 
  */
 const AVLTree = (function () {
-  function _avl(comp: (...args: unknown[]) => void) {
+  function _avl(comp?: (...args: unknown[]) => void) {
     this._comp = undefined
     this._comp = comp !== undefined ? comp : utils.comparator()
     //树的根节点
@@ -99,7 +100,7 @@ const AVLTree = (function () {
   }
 
   //检查树是否是平衡的,否则进行平衡插入
-  const insertBalance = function<T> (node: NodeT<T>, _val: T, balanceFactor: BalanceFactor) {
+  const insertBalance = function<T> (node: NodeT<T>, _val: T, balanceFactor: number) {
     if(balanceFactor > 1 && _val < node._left!._val) {
       return rightRotate(node) //left left case
     }
@@ -135,5 +136,92 @@ const AVLTree = (function () {
   }
    
 
+  //avl树的插入
+  const insert = function<T>(root: NodeT<T>, val: T, tree) {
+    if(root === null) {
+      tree.size++
+      return new Node(val)
+    }
+    if(tree._comp(root._val, val) < 0) {
+      root._right = insert(root._right as NodeT<T>, val, tree)
+    } else if(tree._comp(root._val, val) > 0) {
+      root._left = insert(root._left as NodeT<T>, val, tree)
+    } else {
+      return root
+    }
+    updateHeight(root)
+    const balanceFactor = getHeightDifference(root)
+    return isValidBalanceFactor(balanceFactor) ? root : insertBalance(root, val, balanceFactor)
+  }
+
+
+  //删除元素
+  const deleteElement = function<T>(root: NodeT<T> | null, _val: T, tree) {
+    if(root === null) return root
+    if(tree._comp(root._val, _val) === 0) {
+      if(root._left === null && root._right === null) {
+        root = null
+        tree.size--
+      } else if(root?._left === null) {
+        root = root._right
+        tree.size--
+      } else if(root._right === null) {
+        root = root._left
+        tree.size--
+      } else {
+        let temp = root._right
+        while(temp._left != null) {
+          temp = temp._left
+        }
+        root._val = temp._val
+        root._right = deleteElement(root._right, temp._val, tree)
+      }
+    } else {
+      if(tree._comp(root._val, _val) < 0) {
+        root._right = deleteElement(root._right, _val, tree)
+      } else {
+        root._left = deleteElement(root._left, _val, tree)
+      }
+    }
+    updateHeight(root)
+    root = delBalance(root as NodeT<T>)
+    return root
+  }
+
+  const searchAVLTree = function<T> (root, val, tree) {
+    if(root === null) return null
+    if(tree._comp(root._val, val) === 0) {
+      return root
+    } 
+    if(tree._comp(root._val, val) < 0) {
+      return searchAVLTree(root._right, val, tree)
+    }
+    return searchAVLTree(root._left, val, tree)
+  }
+
+
+  //实例方法
+  _avl.prototype.add = function<T> (_val: T) {
+    const prevSize = this.size
+    this.root = insert(this.root, _val, this)
+    return this.size !== prevSize
+  }
+
+  _avl.prototype.find = function<T> (_val: T) {
+    const temp = searchAVLTree(this.root, _val, this)
+    return temp != null
+  }
+
+
+  _avl.prototype.remove = function<T> (_val: T){
+    const prevSize = this.size
+    this.root = deleteElement(this.root, _val, this)
+    return prevSize !== this.size
+  }
+
   return _avl
+
 })()
+
+
+export { AVLTree }
