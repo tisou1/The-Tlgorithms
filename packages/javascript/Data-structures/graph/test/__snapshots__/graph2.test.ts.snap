@@ -1,0 +1,12 @@
+// Vitest Snapshot v1
+
+exports[`Test graph2 > check one 1`] = `
+[
+  "A -> B D E ",
+  "B -> A C ",
+  "C -> B E F ",
+  "D -> A E ",
+  "E -> A D F C ",
+  "F -> E C ",
+]
+`;
