@@ -9,7 +9,7 @@ export class Graph<T> {
     this.adjacencyMap = {}
   }
 
-  addVertes (vertex: any) {
+  addVertex (vertex: any) {
     this.adjacencyMap[vertex] = []
   }
 
@@ -36,15 +36,33 @@ export class Graph<T> {
     }
   }
 
-
+//深度遍历
   dfs(source, visited = new Set(), output = (value: any) => console.log(value)) {
     if(visited.has(source)) {
       return
     }
 
     output(`Visited node ${source}`)
+    visited.add(source)
     for(const neighbour of this.adjacencyMap[source]) {
       this.dfs(neighbour, visited, output)
+    }
+  }
+
+//广度遍历
+  bfs(source, output = (value: unknown) => console.log(value)) {
+    const queue: number[][] = [[source, 0]]
+    const visited = new Set()
+
+    while(queue.length) {
+      const [ node, level ] = queue.shift() as number[]
+      if(visited.has(node)) continue
+
+      visited.add(node)
+      output(`Visited node ${node} at level ${level}`)
+      for(const next of this.adjacencyMap[node]) {
+        queue.push([next, level + 1])
+      }
     }
   }
   
