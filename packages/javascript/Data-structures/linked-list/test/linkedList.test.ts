@@ -73,17 +73,17 @@ describe('LinkedList', () => {
         {
           "age": 23,
           "id": 3,
-          "name": "angular",
-        },
-        {
-          "age": 31,
-          "id": 2,
-          "name": "angular",
-        },
-        {
-          "age": 99,
-          "id": 1,
           "name": "js",
+        },
+        {
+          "age": 0,
+          "id": 2,
+          "name": "vue",
+        },
+        {
+          "age": 93,
+          "id": 1,
+          "name": "angular",
         },
       ]
     `)
