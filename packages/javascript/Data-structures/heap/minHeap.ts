@@ -21,13 +21,16 @@ export class MinHeap<T = unknown> {
     let childOneIdx = curIndx * 2 + 1
 
     while(childOneIdx <= endIdx) {
+      //是否存在右孩子节点
       const childTwoIdx = childOneIdx + 1 < endIdx ? childOneIdx + 1 : -1 
       const swapIdx = childTwoIdx !== -1 && heap[childTwoIdx] < heap[childOneIdx]
           ? childTwoIdx 
           : childOneIdx
 
+      //子节点比父节点小,进行交换
       if(heap[swapIdx] < heap[curIndx]) {
         this.swap(curIndx, swapIdx, heap)
+        //顺着原来的父节点继续往上进行
         curIndx = swapIdx
         childOneIdx = curIndx * 2 + 1
       } else {
