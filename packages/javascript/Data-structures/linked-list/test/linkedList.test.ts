@@ -71,19 +71,19 @@ describe('LinkedList', () => {
     expect(ls.get()).toMatchInlineSnapshot(`
       [
         {
-          "age": 23,
+          "age": 56,
           "id": 3,
-          "name": "js",
-        },
-        {
-          "age": 0,
-          "id": 2,
           "name": "vue",
         },
         {
-          "age": 93,
-          "id": 1,
+          "age": 55,
+          "id": 2,
           "name": "angular",
+        },
+        {
+          "age": 78,
+          "id": 1,
+          "name": "react",
         },
       ]
     `)
